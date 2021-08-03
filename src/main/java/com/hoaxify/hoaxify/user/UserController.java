@@ -27,7 +27,7 @@ public class UserController {
 	UserService userService;
 	
 	@PostMapping("/api/1.0/users")
-	public GenericResponse createUser(@Valid @RequestBody User user) {
+	GenericResponse createUser(@Valid @RequestBody User user) {
 		System.out.println("In createUser method");
 		userService.save(user);
 		return new GenericResponse("User saved");
@@ -35,7 +35,7 @@ public class UserController {
 	
 	@ExceptionHandler({MethodArgumentNotValidException.class})
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public ApiError handleValidationException(MethodArgumentNotValidException exception, HttpServletRequest request) {
+	ApiError handleValidationException(MethodArgumentNotValidException exception, HttpServletRequest request) {
 		System.out.println("In handleValidationException method");
 		ApiError apiError = new ApiError(400,"Validation Error",request.getServletPath());
 		BindingResult result = exception.getBindingResult();
