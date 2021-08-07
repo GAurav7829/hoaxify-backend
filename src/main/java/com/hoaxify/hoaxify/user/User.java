@@ -15,8 +15,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import lombok.Data;
 
 @Data
@@ -28,22 +26,19 @@ public class User implements UserDetails {
 	private static final long serialVersionUID = 9103072629979540430L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonView(Views.Base.class)
 	private Long id;
 	@NotNull(message = "{hoaxify.constraints.username.NotNull.message}")
 	@Size(min = 4, max = 255)
 	@UniqueUsername
-	@JsonView(Views.Base.class)
 	private String username;
 	@NotNull
 	@Size(min = 4, max = 255)
-	@JsonView(Views.Base.class)
 	private String displayName;
 	@NotNull
 	@Size(min = 8, max = 255)
 	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$", message = "{hoaxify.constraints.password.Pattern.message}")
 	private String password;
-	@JsonView(Views.Base.class)
+	
 	private String image;
 	
 	@Override
