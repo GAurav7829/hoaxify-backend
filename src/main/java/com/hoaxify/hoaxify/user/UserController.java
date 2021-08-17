@@ -59,7 +59,7 @@ public class UserController {
 		return new UserVM(user);
 	}
 	
-	@PutMapping("/user/{id:[0-9]+}")
+	@PutMapping("/users/{id:[0-9]+}")
 	@PreAuthorize("#id == principal.id")//added @EnableGlobalMethodSecurity(prePostEnabled = true) to SecurityConfiguration.java
 	UserVM updateUser(@PathVariable long id, @RequestBody(required = false) UserUpdateVM user) {
 		User updatedUser=userService.update(id,user);
