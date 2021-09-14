@@ -21,9 +21,11 @@ import lombok.Data;
 @Data
 @Entity
 public class Hoax {
+	
 	@Id
 	@GeneratedValue
 	private Long id;
+	
 	@NotNull
 	@Size(min=10, max = 5000)
 	@Column(length = 5000)
@@ -31,8 +33,10 @@ public class Hoax {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date timestamp;
+	
 	@ManyToOne
 	private User user;
-	@OneToOne(mappedBy = "hoax")
+	
+	@OneToOne(mappedBy = "hoax", orphanRemoval = true)
 	private FileAttachment attachment;
 }
